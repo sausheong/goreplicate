@@ -1,5 +1,7 @@
 # Go Replicate
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/sausheong/goreplicate.svg)](https://pkg.go.dev/github.com/sausheong/goreplicate)
+
 This is a simple Go package for interacting with the Replicate (https://replicate.com) HTTP APIs. Replicate is an API service that allows developers to use machine learning models easily through calling APIs.
 
 This package is based on the HTTP APIs -- https://replicate.com/docs/reference/http. Please read the APIs to understand how it works first.
