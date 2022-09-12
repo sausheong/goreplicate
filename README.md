@@ -6,6 +6,16 @@ This is a simple Go package for interacting with the Replicate (https://replicat
 
 This package is based on the HTTP APIs -- https://replicate.com/docs/reference/http. Please read the APIs to understand how it works first.
 
+## Setup
+
+Create an ".env" file.
+
+````sh
+cp .env-dev .env
+````
+
+Paste your Replicate API token into the ".env" file.
+
 ## How to use
 
 First, create a model. Go to https://replicate.com/explore to find the model you want to use. Then set up the input parameters for the model.
@@ -39,3 +49,8 @@ if err != nil {
 }    
 ````
 
+## Testing
+
+````sh
+go test -v -coverprofile coverage.out && go tool cover -html coverage.out -o coverage.html
+````

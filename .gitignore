@@ -1,1 +1,5 @@
 .DS_Store
+*.test
+*.out
+*.html
+.env

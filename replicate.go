@@ -10,7 +10,7 @@ import (
 
 var url = "https://api.replicate.com/v1/predictions"
 
-// Create a new client
+// NewClient creates a new Client
 // Client is the main struct used to interact with the Replicate HTTP APIs
 func NewClient(auth string, model *Model) *Client {
 	return &Client{

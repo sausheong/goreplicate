@@ -4,14 +4,28 @@ import (
 	"fmt"
 	"testing"
 	"time"
+
+	"github.com/joho/godotenv"
 )
 
-var auth = "Token <token>"
+var auth = "Token " + getEnvironmentVariable("TOKEN")
 var version = "a9758cbfbd5f3c2094457d996681af52552901775aa2d6dd0b17fd15df959bef"
 var prompt1 = "An astronaut riding a horse in photorealistic style"
 var prompt2 = "modern kids play area landscape architecture, water play area, floating kids, seating areas, perspective view, rainy weather, biopunk, cinematic photo, highly detailed, cinematic lighting, ultra-detailed, ultrarealistic, photorealism"
 var prompt3 = "victorian rocking toy carousel theme park horse, overgrown, zdzisław beksiński, hr giger, mystical occult symbol in real life, high detail, green fog"
 var prompt4 = "woman, beautiful, elegany, golden braided hair golden eyes, green and gold caftan, dress, smiling, fairy, shiny, realistic ,4k"
+
+func getEnvironmentVariable(key string) string {
+	if env, err := godotenv.Read(); err == nil {
+		if value, ok := env[key]; ok {
+			return value
+		}
+		fmt.Println(key + " not found in .env file")
+		return ""
+	}
+	fmt.Println("Error loading .env file")
+	return ""
+}
 
 // TODO: improve on test cases
 func TestClientCreateRequest(t *testing.T) {
@@ -29,7 +43,7 @@ func TestClientCreateRequest(t *testing.T) {
 }
 
 func TestGetRequest(t *testing.T) {
-	predictId := "q3iywr5thzdsvkpscbhb6mddyu"
+	predictId := getEnvironmentVariable("TEST_PREDICT_ID")
 	fmt.Println("get request:", predictId)
 	model := NewModel("stability-ai", "stable-diffusion", version)
 	cl2 := NewClient(auth, model)
