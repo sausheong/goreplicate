@@ -30,7 +30,7 @@ type Response struct {
 	CompletedAt time.Time `json:"completed_at"`
 	Status      string    `json:"status"`
 	Input       any       `json:"input"`
-	Output      []string  `json:"output"`
+	Output      any       `json:"output"`
 	Error       string    `json:"error"`
 	Logs        string    `json:"logs"`
 	Metrics     struct {
@@ -72,6 +72,22 @@ func NewModel(owner, name, version string) (model *Model) {
 			"num_inference_steps": 100,
 			"guidance_scale":      7.5,
 		}
+		return
 	}
+
+	if owner == "openai" && name == "whisper" {
+		model.Input = map[string]interface{}{
+			"audio":           "",
+			"model":           "base",
+			"transcription":   "plain text",
+			"translate":       false,
+			"temperature":     0.5,
+			"patience":        1.0,
+			"suppress_tokens": -1,
+			"initial_prompt":  "",
+		}
+		return
+	}
+	model.Input = map[string]interface{}{}
 	return
 }

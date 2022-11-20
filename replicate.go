@@ -3,7 +3,6 @@ package goreplicate
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"io/ioutil"
 	"net/http"
 )
@@ -66,6 +65,9 @@ func (c *Client) Get(predictionId string) (err error) {
 			}
 			defer resp.Body.Close()
 			body, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				break
+			}
 			err = json.Unmarshal(body, &c.Response)
 			if err != nil {
 				break
@@ -76,7 +78,6 @@ func (c *Client) Get(predictionId string) (err error) {
 				break
 			}
 			if c.Response.Status == "failed" {
-				err = errors.New(c.Response.Error)
 				ok <- true
 				break
 			}
