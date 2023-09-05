@@ -26,13 +26,13 @@ type Response struct {
 		Get    string `json:"get"`
 		Cancel string `json:"cancel"`
 	} `json:"urls"`
-	CreatedAt   time.Time `json:"created_at"`
-	CompletedAt time.Time `json:"completed_at"`
-	Status      string    `json:"status"`
-	Input       any       `json:"input"`
-	Output      any       `json:"output"`
-	Error       string    `json:"error"`
-	Logs        string    `json:"logs"`
+	CreatedAt   time.Time   `json:"created_at"`
+	CompletedAt time.Time   `json:"completed_at"`
+	Status      interface{} `json:"status"`
+	Input       any         `json:"input"`
+	Output      any         `json:"output"`
+	Error       string      `json:"error"`
+	Logs        string      `json:"logs"`
 	Metrics     struct {
 		PredictTime float64 `json:"predict_time"`
 	} `json:"metrics"`
