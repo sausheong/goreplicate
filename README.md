@@ -21,6 +21,7 @@ Then create a client, passing into it the API authentication token (you can get 
 Using the client you can send a create prediction call to the API to start the prediction.
 
 ````go
+auth := "Token <your API token>"
 client := NewClient(auth, model)
 err := client.Create()
 if err != nil {

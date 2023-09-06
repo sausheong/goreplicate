@@ -18,13 +18,19 @@ func TestClientCreateRequest(t *testing.T) {
 	model := NewModel("stability-ai", "stable-diffusion", version)
 	fmt.Printf("%#v", model)
 	model.Input["prompt"] = prompt3
-	model.Input["num_outputs"] = 4
+	model.Input["num_outputs"] = 1
 
 	client := NewClient(auth, model)
 	err := client.Create()
 	if err != nil {
 		t.Error(err)
 	}
+
+	// Only expect "starting" to be passing
+	if client.Response.Status != "starting" {
+		t.Errorf("expected status to be starting, got %s", client.Response.Status)
+	}
+
 	t.Logf("%#v", client.Response)
 }
 
