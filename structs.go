@@ -36,6 +36,12 @@ type Response struct {
 	Metrics     struct {
 		PredictTime float64 `json:"predict_time"`
 	} `json:"metrics"`
+	Title         string `json:"title"`
+	InvalidFields []struct {
+		Type        string `json:"type"`
+		Field       string `json:"field"`
+		Description string `json:"description"`
+	} `json:"invalid_fields"`
 }
 
 // Model is the model that represents the model to be used for prediction
